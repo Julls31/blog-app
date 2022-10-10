@@ -28,9 +28,9 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    protected function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -39,9 +39,9 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    protected function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -67,9 +67,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    protected function edit($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -79,9 +79,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    protected function update(Request $request, $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -90,8 +90,8 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    protected function destroy($id)
     {
-        //
+        return abort(404);
     }
 }

@@ -40,16 +40,33 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                            @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                                     </div>
-                                    <form class="user">
+                                    <form action="{{ route('login.proses') }}" method="POST">
+                    @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                id="email" name="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
+                                                @if ($errors->has('email'))
+                            <div class="text-danger">
+                                {{ $errors->first('email') }}
+                            </div>
+                        @endif
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="password" name="password" placeholder="Password">
+
+                        @if ($errors->has('password'))
+                            <div class="text-danger">
+                                {{ $errors->first('password') }}
+                            </div>
+                        @endif
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -58,8 +75,8 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="{{ url('/admin')}}" class="btn btn-primary btn-user btn-block">
-                                            Login
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                            
                                         </a>
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
