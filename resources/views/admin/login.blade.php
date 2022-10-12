@@ -40,11 +40,14 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                            @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
+                                            @if(session('success'))
+        <p class="alert alert-success">{{ session('success') }}</p>
+        @endif
+        @if($errors->any())
+        @foreach($errors->all() as $err)
+        <p class="alert alert-danger">{{ $err }}</p>
+        @endforeach
+        @endif
                                     </div>
                                     <form action="{{ route('login.proses') }}" method="POST">
                     @csrf
