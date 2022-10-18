@@ -17,9 +17,11 @@ class BlogController extends Controller
     
     public function index()
     {
-       $posts = DB::table('posts') 
-            ->join ( 'users' , 'users.id', '=', 'posts.user_id')->latest('posts.created_at')
-            ->paginate(2);
+       $posts = DB::table('users') 
+            ->join ( 'posts' , 'users.id', '=', 'posts.user_id')->latest('posts.created_at')
+            ->paginate(5);
+
+        
         return view('blog.index',compact('posts'));
     }
 
@@ -57,8 +59,13 @@ class BlogController extends Controller
         $posts = DB::table('posts')
                 ->where('id', '=', $id)
                 ->get();
-        // echo var_dump($users);
-        return view('blog.post.post',compact('posts'));
+        
+
+        $comment = DB::table('comment')   
+            ->where('post_id', '=', $id)
+            ->get();
+
+        return view('blog.post.post',compact('posts','comment','post'));
     }
 
 
@@ -67,7 +74,7 @@ class BlogController extends Controller
             $request->validate([
 
                 'name' => 'required',
-                'email' => 'required|unique:users',
+                'email' => 'required',
 
             ]);
 
@@ -78,7 +85,8 @@ class BlogController extends Controller
                 'post_id' => $request->post_id,
             ]);
 
-            return redirect()->route('blog/'. $request->post_id)->with('success', 'Registrasi Berhasil. Silahkan Login!');
+            // return redirect()->route('blog/'. $request->post_id)->with('success', 'Registrasi Berhasil. Silahkan Login!');
+            return back()->withInput();
 
         }
 
