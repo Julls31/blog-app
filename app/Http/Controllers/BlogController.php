@@ -17,10 +17,10 @@ class BlogController extends Controller
     
     public function index()
     {
-        $posts = Post::latest()->paginate(5);
-
-        return view('blog.index',compact('posts'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+       $posts = DB::table('posts') 
+            ->join ( 'users' , 'users.id', '=', 'posts.user_id')->latest('posts.created_at')
+            ->paginate(2);
+        return view('blog.index',compact('posts'));
     }
 
     /**
@@ -60,6 +60,27 @@ class BlogController extends Controller
         // echo var_dump($users);
         return view('blog.post.post',compact('posts'));
     }
+
+
+     public function comment (Request $request)
+        {
+            $request->validate([
+
+                'name' => 'required',
+                'email' => 'required|unique:users',
+
+            ]);
+
+            DB::table('comment')-> insert([
+                'name' => $request->name,
+                'email' => $request->email,
+                'comment' => $request->comment,
+                'post_id' => $request->post_id,
+            ]);
+
+            return redirect()->route('blog/'. $request->post_id)->with('success', 'Registrasi Berhasil. Silahkan Login!');
+
+        }
 
     /**
      * Show the form for editing the specified resource.

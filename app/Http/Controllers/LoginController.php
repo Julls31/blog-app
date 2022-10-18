@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -21,7 +22,17 @@ class LoginController extends Controller
         ]);
 
         // cek apakah email dan password benar
-        if (auth()->attempt(request(['email', 'password']))) {
+        if (auth()->attempt(request([ 'email', 'password']))) {
+            $users = DB::table('users') 
+            ->where ('email', $request-> input ('email'))
+            ->get();
+            foreach ($users as $row) {
+                $name = $row->name;
+                $id = $row->id;
+                }
+             $request->session()->put('name', $name);
+             $request->session()->put('id', $id);
+
             return redirect('admin');
         }
 

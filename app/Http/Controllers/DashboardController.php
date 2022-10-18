@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data1['tb_user'] = DB::table('tb_user')->count();
+        $data1['users'] = DB::table('users')->count();
         $data1['posts'] = DB::table('posts')->count();
         return view('admin.index', compact('data1'));
     }

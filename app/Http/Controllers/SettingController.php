@@ -5,18 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
-class PostController extends Controller
+class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $posts = Post::latest()->paginate(5);
 
-        return view('posts.index',compact('posts'))
+        return view('admin.setting',compact('posts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -27,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('admin.setting');
     }
 
     /**
@@ -39,6 +34,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            
             'title' => 'required',
             'content' => 'required',
             'user_id' => 'required',
@@ -46,8 +42,8 @@ class PostController extends Controller
 
         Post::create($request->all());
 
-        return redirect()->route('posts.index')
-                        ->with('success','Post created successfully.');
+        return redirect()->route('setting.index')
+                        ->with('success','Pembuatan Post Berhasil!!!');
     }
 
     /**
@@ -58,7 +54,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show',compact('post'));
+        return view('admin.setting',compact('post'));
+
+
     }
 
     /**
@@ -69,7 +67,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit',compact('post'));
+        return view('admin.setting',compact('post'));
     }
 
     /**
@@ -88,7 +86,7 @@ class PostController extends Controller
 
         $post->update($request->all());
 
-        return redirect()->route('posts.index')
+        return redirect()->route('setting.index')
                         ->with('success','Post updated successfully');
     }
 
@@ -102,7 +100,7 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('posts.index')
+        return redirect()->route('setting.index')
                         ->with('success','Post deleted successfully');
     }
 }

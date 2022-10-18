@@ -70,14 +70,14 @@
                         </a>
                         <p class="post-meta">
                             Posted by
-                            <a href="#!">Julls</a>
+                            <a href="#!">{{ $post->name }}</a>
                             on October 04, 2022
                         </p>
  <hr class="my-4" />
                     </div>
                     @endforeach              
                     <!-- Divider-->
-                   
+                   {!! $posts->links() !!}
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
                 </div>

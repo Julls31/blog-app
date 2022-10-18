@@ -6,7 +6,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +20,9 @@ use App\Http\Controllers\DashboardController;
 
 //Blog
 Route::get('/', [BlogController::class,'index']);
+Route::get('/test/{id}', [BlogController::class, 'test']);
 Route::get('/blog/{id}', [BlogController::class, 'show']);
+Route::post('comment', [BlogController::class, 'comment'])->name('comment');
 
 
 Route::get('/about', function () {
@@ -43,7 +45,7 @@ Route::get('/contact', function () {
 Route::get('admin', [DashboardController::class,'index'])->middleware('auth');
 Route::resource('admin/posts', PostController::class)->middleware('auth');
 
-// Route::get('dashboard', [DashboardController::class,'index'])->middleware('auth');
+Route::resource('admin/setting', SettingController::class)->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login'])->name('login.proses')->middleware('guest');

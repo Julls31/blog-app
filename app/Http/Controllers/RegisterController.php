@@ -18,7 +18,7 @@ class RegisterController extends Controller
     {
              $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:tb_user',
+            'email' => 'required|unique:users',
             'password' => 'required',
             'password_confirm' => 'required|same:password',
         ]);
