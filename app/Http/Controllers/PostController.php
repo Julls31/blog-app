@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Image;
 
 class PostController extends Controller
 {
@@ -44,7 +45,18 @@ class PostController extends Controller
             'user_id' => 'required',
         ]);
 
-        Post::create($request->all());
+        $posts = Post::create($request->all()); 
+
+         $fileModel = new Image;
+        $request->file();
+        $fileName = time().'_'. $request->file->getClientOriginalName();
+        $destinationPath = 'images';
+        $request->file->move(public_path($destinationPath), $fileName);
+        $fileModel->name = $fileName;
+        $fileModel->post_id = $posts->id();
+        $fileModel->file_path = '/images/' . $fileName;
+        $fileModel->save();
+
 
         return redirect()->route('posts.index')
                         ->with('success','Post created successfully.');

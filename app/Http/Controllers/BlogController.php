@@ -63,9 +63,15 @@ class BlogController extends Controller
 
         $comment = DB::table('comment')   
             ->where('post_id', '=', $id)
+            ->where('approve', '=', 1)
             ->get();
 
-        return view('blog.post.post',compact('posts','comment','post'));
+        $gambar = DB::table('posts') 
+            ->join ( 'images' , 'posts.id', '=', 'images.post_id')
+            ->get();
+
+
+        return view('blog.post.post',compact('posts','comment','post','gambar'));
     }
 
 

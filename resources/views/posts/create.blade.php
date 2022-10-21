@@ -22,7 +22,7 @@
 </div> 
 @endif 
 
-<form action="{{ route('posts.store') }}" method="POST"> 
+<form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
 @csrf 
 <div class="row"> 
 <div class="col-xs-12 col-sm-12 col-md-12"> 
@@ -33,6 +33,22 @@
 <input type="text" name="title" class="form-control" placeholder="Title"> 
 </div> 
 </div> 
+
+</div>
+<!-- <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                <label class="custom-file-label" for="chooseFile">Select file</label>
+            </div>  -->
+
+<label class="block mb-4">
+                    <span class="sr-only">Choose File</span>
+                    <input type="file" name="file" id="tunjukberkas"
+                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                    @error('image')
+                    <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
+                </label>
+
 <div class="col-xs-12 col-sm-12 col-md-12"> 
 <div class="form-group"> 
 <strong>Content:</strong> 

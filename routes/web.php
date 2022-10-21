@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,12 @@ Route::get('/', [BlogController::class,'index']);
 Route::get('/test/{id}', [BlogController::class, 'test']);
 Route::get('/blog/{id}', [BlogController::class, 'show']);
 Route::post('comment', [BlogController::class, 'comment'])->name('comment');
+Route::get('admin/comment', [CommentController::class, 'index']);
+Route::post('/admin/comments/{id}', [CommentController::class, 'update']) ;
+
+Route::get('/image', [ImageController::class,'index'])->name('image.index');
+Route::post('/image', [ImageController::class,'store'])->name('image.store');
+
 
 
 Route::get('/about', function () {
@@ -62,8 +69,8 @@ Route::post('register', [RegisterController::class, 'actionregister'])->name('re
 // });
 
 
-// Route::get('/admin', function () {
-//     return view('admin/index');
+// Route::get('/comment', function () {
+//     return view('posts/comment');
 // });
 
 // Route::get('/login', function () {

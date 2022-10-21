@@ -66,7 +66,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url ('admin/posts')}}">Daftar Artikel</a>
-                        <a class="collapse-item" href="{{ url('/admin')}}">Admin</a>
+                        <a class="collapse-item" href="{{ url('/admin/comment')}}">Komentar</a>
                     </div>
                 </div>
             </li>

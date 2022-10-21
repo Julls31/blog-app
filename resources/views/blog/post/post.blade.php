@@ -1,11 +1,13 @@
 @extends ('blog.post.master')
 @section ('konten') 
 <!-- Page Header-->
-        <header class="masthead" style="background-image: url('{{asset('')}}blog2/assets/img/dugong.jpg')">
+<?php foreach ($gambar as $row) {?>
+        <header class="masthead" style="background-image: url('{{asset('')}}<?php echo $row->file_path;?>')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
+                             <?php } ?>
                             <?php foreach ($posts as $row) { ?>
                                 <h1>
                                 <?php echo $row->title; ?></h1>
