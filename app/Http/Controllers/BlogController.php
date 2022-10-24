@@ -66,8 +66,8 @@ class BlogController extends Controller
             ->where('approve', '=', 1)
             ->get();
 
-        $gambar = DB::table('posts') 
-            ->join ( 'images' , 'posts.id', '=', 'images.post_id')
+        $gambar = DB::table('images') 
+            ->where ('post_id','=',$id)
             ->get();
 
 

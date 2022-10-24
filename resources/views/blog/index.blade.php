@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -30,8 +30,13 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url ('/about')}}">About</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url ('/post')}}">Post</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url ('/contact')}}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url ('/login')}}">Login</a></li>
+                       <?php if (session('id') != null) { ?>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url ('/logout')}}">Logout</a></li>
+                       <?php } else { ?>
+                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url ('/login')}}">Login</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url ('/register')}}">Register</a></li>
+
+                       <?php } ?>
                     </ul>
                 </div>
             </div>

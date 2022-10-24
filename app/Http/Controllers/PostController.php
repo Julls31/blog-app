@@ -45,21 +45,23 @@ class PostController extends Controller
             'user_id' => 'required',
         ]);
 
-        $posts = Post::create($request->all()); 
+        $query = Post::create($request->all());
+        $last_id = $query->id; 
 
          $fileModel = new Image;
-        $request->file();
+        if ($request->file() != null){
         $fileName = time().'_'. $request->file->getClientOriginalName();
         $destinationPath = 'images';
         $request->file->move(public_path($destinationPath), $fileName);
         $fileModel->name = $fileName;
-        $fileModel->post_id = $posts->id();
-        $fileModel->file_path = '/images/' . $fileName;
+        $fileModel->post_id = $last_id;
+        $fileModel->file_path = 'images/' . $fileName;
         $fileModel->save();
+        };
 
 
         return redirect()->route('posts.index')
-                        ->with('success','Post created successfully.');
+                        ->with('success','Post created successfully with ID'.$last_id);
     }
 
     /**
