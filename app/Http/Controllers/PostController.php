@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::where('post_type','=','post')
+                ->paginate(5);
 
         return view('posts.index',compact('posts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -43,6 +44,7 @@ class PostController extends Controller
             'title' => 'required',
             'content' => 'required',
             'user_id' => 'required',
+            'post_type' => 'required'
         ]);
 
         $query = Post::create($request->all());

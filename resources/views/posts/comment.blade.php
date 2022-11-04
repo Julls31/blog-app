@@ -13,12 +13,12 @@
 @endif 
 <table class="table table-bordered"> 
 <tr> 
-<th width="200px" class="text-center">Nama</th> 
-<th width="400px" class="text-center">Judul Artikel</th>
-<th class="text-center">Komentar</th>  
-<th width="200px"class="text-center">Action</th>
+<th width="180px" class="text-center">Nama</th> 
+<th width="200px" class="text-center">Judul Artikel</th>
+<th width="400px" class="text-center">Komentar</th>  
+<th width="150px"class="text-center">Action</th>
 
-</tr> <?php echo var_dump($posts); ?>
+</tr> 
 @foreach ($posts as $post) 
 <tr> 
 <td>{{ $post->name }}</td> 
@@ -26,13 +26,17 @@
 <td>{{ $post->comment }}</td> 
 <td class="text-center"> 
 
-<form action="{{ url('') }}/admin/comments/<?php echo $post->id ?>" method="POST"> 
+<form action="{{ url('') }}/admin/comment/<?php echo $post->id ?>" method="POST"> 
 @csrf 
 <div class="row"> 
 <div class="col-xs-12 col-sm-12 col-md-12 text-center"> 
-<input type="text" name="approve" value="<?php echo $post->id ?>" class="form-control" placeholder="Title" hidden> 
-<button type="submit" class="btn btn-primary">Approve</button> 
-</form> 
+<input type="text" name="approve" value="<?php echo $post->id ?>" class="form-control" placeholder="Title" hidden>
+<?php if ($post->approve ==null) { ?>
+  <button type="submit" class="btn btn-primary">Approve</button>
+  </form> 
+<?php } else { ?> 
+<div class="btn btn-success disabled">Approved</div>
+<?php } ?>
 
 <!-- <form action="{{ route('posts.destroy',$post->id) }}" method="POST"> 
 @csrf 

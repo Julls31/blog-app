@@ -14,7 +14,7 @@ class CommentController extends Controller
     {
     $posts = DB::table('posts') 
             ->join ( 'comment' , 'posts.id', '=', 'comment.post_id')->latest('posts.created_at')
-            ->paginate(5);
+            ->paginate(10);
     $komen = DB::table('comment')
             ->select ('id')
             ->get();

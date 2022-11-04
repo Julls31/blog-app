@@ -70,8 +70,13 @@ class BlogController extends Controller
             ->where ('post_id','=',$id)
             ->get();
 
+        $about = DB::table('posts') 
+            ->where ('title','=','About 2')
+            ->get();
 
-        return view('blog.post.post',compact('posts','comment','post','gambar'));
+
+
+        return view('blog.post.post',compact('posts','comment','post','gambar','about'));
     }
 
 

@@ -28,8 +28,9 @@
 <div class="col-xs-12 col-sm-12 col-md-12"> 
 <div class="form-group"> 
 <strong>Title:</strong>
-{{$id = Session::get ('id')}}
-<input type="text" name="user_id" value="{{$id}}" hidden>  
+<div hidden>{{$id = Session::get ('id')}}</div>
+<input type="text" name="user_id" value="{{$id}}" hidden>
+<input type="text" name="post_type" value="post" hidden>  
 <input type="text" name="title" class="form-control" placeholder="Title"> 
 </div> 
 </div> 
@@ -59,5 +60,7 @@
 <button type="submit" class="btn btn-primary">Submit</button> 
 </div> 
 </div> 
-</form> 
+</form>
+
 @endsection
+

@@ -51,6 +51,16 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            <!-- Nav Item - Blog -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url ('/')}}" target="_blank">
+                    <i class="fas fa-fas fa-book-dead"></i>
+                    <span>Blog</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             <!-- Heading -->
             <div class="sidebar-heading">
                 Interface
@@ -68,9 +78,22 @@
                         <a class="collapse-item" href="{{url ('admin/posts')}}">Daftar Artikel</a>
                         <a class="collapse-item" href="{{ url('/admin/comment')}}">Komentar</a>
                     </div>
-                </div>
+                </div>                
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-book-dead"></i>
+                    <span>Halaman</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{url ('admin/pages')}}">Daftar Halaman</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -359,6 +382,8 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('')}}admin2/js/demo/chart-area-demo.js"></script>
     <script src="{{ asset('')}}admin2/js/demo/chart-pie-demo.js"></script>
+
+
 
 </body>
 

@@ -40,22 +40,18 @@
                              <h4 class="mb-0">Recent comments</h4>
             <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
             <?php foreach ($comment as $row) {?>
+
             <div class="d-flex flex-start">
               <img class="rounded-circle shadow-1-strong me-3"
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60"
+                src="https://png.pngitem.com/pimgs/s/496-4965310_dog-doguedebordeaux-doge-smile-sacado-lomejor-doge-t.png" alt="avatar" width="60"
                 height="60" />
               <div>
-                <h6 class="fw-bold mb-1"><?php echo $row->name; ?></h6>
+                <h5 class="fw-bold mb-1"><?php echo $row->name; ?></h5>
                 <div class="d-flex align-items-center mb-3">
                   <p class="mb-0">
-                    March 07, 2021
-                    <span class="badge bg-primary">Pending</span>
-                  </p>
-                  <a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a>
-                  <a href="#!" class="link-muted"><i class="fas fa-redo-alt ms-2"></i></a>
-                  <a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a>
+                   <h6> <?= $row->created_at;?></h6>
                 </div>
-                <p class="mb-0">
+                <p class="media-body">
                   <?= $row->comment;?>
                 </p>
               </div>
